@@ -1,0 +1,24 @@
+{
+  "name": "project-lvl2-s365",
+  "version": "1.0.0",
+  "description": "this application is searching difference of configuration files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/belnowivan/project-lvl2-s365.git"
+  },
+  "author": "ivan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/belnowivan/project-lvl2-s365/issues"
+  },
+  "homepage": "https://github.com/belnowivan/project-lvl2-s365#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6"
+  }
+}
