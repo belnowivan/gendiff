@@ -5,3 +5,5 @@
 ## gendiff
 
 this is cli tools
+
+[![asciicast](https://asciinema.org/a/6iZK2WqX8mhNuKCI1dSAcxfls.svg)](https://asciinema.org/a/6iZK2WqX8mhNuKCI1dSAcxfls)
