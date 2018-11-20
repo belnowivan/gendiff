@@ -8,5 +8,5 @@ this is cli tools
 
  #### use
  ``` gendiff -h ```
-
- https://asciinema.org/a/An9SC0ymS2SZZ7ecfYQkCexOK
+ 
+[![asciicast](https://asciinema.org/a/An9SC0ymS2SZZ7ecfYQkCexOK.svg)](https://asciinema.org/a/An9SC0ymS2SZZ7ecfYQkCexOK)
