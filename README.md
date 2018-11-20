@@ -6,4 +6,7 @@
 
 this is cli tools
 
-[![asciicast](https://asciinema.org/a/6iZK2WqX8mhNuKCI1dSAcxfls.svg)](https://asciinema.org/a/6iZK2WqX8mhNuKCI1dSAcxfls)
+ #### use
+ ``` gendiff -h ```
+
+ https://asciinema.org/a/An9SC0ymS2SZZ7ecfYQkCexOK
