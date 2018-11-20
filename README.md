@@ -2,5 +2,6 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/ee9b78a589c7d01c2bb6/maintainability)](https://codeclimate.com/github/belnowivan/project-lvl2-s365/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/ee9b78a589c7d01c2bb6/test_coverage)](https://codeclimate.com/github/belnowivan/project-lvl2-s365/test_coverage)
 
-##gendiff
+## gendiff
+
 this is cli tools
