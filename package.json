@@ -1,8 +1,9 @@
 {
   "name": "project-lvl2-belnow",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "this application is searching difference of configuration files",
   "main": "index.js",
+  "bin": { "gendiff": "./dist/bin/gendiff.js" },
   "scripts": {
     "test": "jest",
     "prepublishOnly": "npm run build",
