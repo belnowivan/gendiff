@@ -8,9 +8,10 @@ const diff = (dataOne, dataTwo) => {
   const diffArr = arrKey.reduce((acc, key) => {
     if (has(dataOne, key) && !has(dataTwo, key)) { return [...acc, `  - ${key}: ${dataOne[key]}`]; }
     if (!has(dataOne, key) && has(dataTwo, key)) { return [...acc, `  + ${key}: ${dataTwo[key]}`]; }
-    return dataOne[key] !== dataTwo[key]
-      ? [...acc, `  + ${key}: ${dataTwo[key]}`, `  - ${key}: ${dataOne[key]}`]
-      : [...acc, `    ${key}: ${dataTwo[key]}`];
+    if (dataOne[key] !== dataTwo[key]) {
+      return [...acc, `  + ${key}: ${dataTwo[key]}`, `  - ${key}: ${dataOne[key]}`];
+    }
+    return [...acc, `    ${key}: ${dataTwo[key]}`];
   }, []);
   return `{\n${diffArr.join('\n')}\n}`;
 };
