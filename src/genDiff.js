@@ -9,7 +9,7 @@ const diff = (dataOne, dataTwo) => {
     const firstDataIsSecondIsNot = has(dataOne, key) ? ` ${key}: ${dataOne[key]}` : false;
     const SecondDataIsfirstIsNot = has(dataTwo, key) ? ` ${key}: ${dataTwo[key]}` : false;
     if (firstDataIsSecondIsNot) { return [...acc, `  - ${firstDataIsSecondIsNot}`]; }
-    if (firstDataIsSecondIsNot) { return [...acc, `  + ${SecondDataIsfirstIsNot}`]; }
+    if (SecondDataIsfirstIsNot) { return [...acc, `  + ${SecondDataIsfirstIsNot}`]; }
     if (dataOne[key] !== dataTwo[key]) {
       return [...acc, `  + ${SecondDataIsfirstIsNot}`, `  - ${firstDataIsSecondIsNot}`];
     }
