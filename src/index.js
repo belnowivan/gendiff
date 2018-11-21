@@ -2,15 +2,15 @@ import fs from 'fs';
 import has from 'lodash/has';
 
 const diff = (dataOne, dataTwo) => {
-  const arrPunkt = Object.keys(dataOne)
+  const arrDiff = Object.keys(dataOne)
     .reduce((acc, elem) => {
-      if (!has(dataTwo)) { return [...acc, `+ ${elem}: ${dataTwo[elem]}`]; }
+      if (!has(dataTwo, elem)) { return [...acc, `- ${elem}: ${dataTwo[elem]}`]; }
       if (dataOne[elem] !== dataTwo[elem]) {
-        return [...acc, `+ ${elem}: ${dataOne[elem]}`, `+ ${elem}: ${dataTwo[elem]}`];
+        return [...acc, `- ${elem}: ${dataOne[elem]}`, `+ ${elem}: ${dataTwo[elem]}`];
       }
-      return dataTwo[elem];
+      return `  ${dataTwo[elem]}`;
     });
-  return arrPunkt.join('\n');
+  return arrDiff.join('\n');
 };
 
 const genDiff = (firstPath, secondPath) => {
