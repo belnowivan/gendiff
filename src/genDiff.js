@@ -6,14 +6,12 @@ import has from 'lodash/has';
 const diff = (dataOne, dataTwo) => {
   const arrKey = union(Object.keys(dataOne), Object.keys(dataTwo));
   const diffArr = arrKey.reduce((acc, key) => {
-    const firstDataIsSecondIsNot = has(dataOne, key) ? ` ${key}: ${dataOne[key]}` : false;
-    const SecondDataIsfirstIsNot = has(dataTwo, key) ? ` ${key}: ${dataTwo[key]}` : false;
-    if (firstDataIsSecondIsNot) { return [...acc, `  - ${firstDataIsSecondIsNot}`]; }
-    if (SecondDataIsfirstIsNot) { return [...acc, `  + ${SecondDataIsfirstIsNot}`]; }
+    if (has(dataOne, key) && !has(dataTwo, key)) { return [...acc, `  - ${key}: ${dataOne[key]}`]; }
+    if (!has(dataOne, key) && has(dataTwo, key)) { return [...acc, `  + ${key}: ${dataTwo[key]}`]; }
     if (dataOne[key] !== dataTwo[key]) {
-      return [...acc, `  + ${SecondDataIsfirstIsNot}`, `  - ${firstDataIsSecondIsNot}`];
+      return [...acc, `  + ${key}: ${dataTwo[key]}`, `  - ${key}: ${dataOne[key]}`];
     }
-    return [...acc, `    ${SecondDataIsfirstIsNot}`];
+    return [...acc, `    ${key}: ${dataTwo[key]}`];
   }, []);
   return `{\n${diffArr.join('\n')}\n}`;
 };
