@@ -4,7 +4,7 @@ import yaml from 'js-yaml';
 
 const objFormatChoice = {
   '.json': JSON.parse,
-  '.yaml': yaml.safeLoad,
+  '.yml': yaml.safeLoad,
   '.ini': 'ago',
 };
 export default (filePath) => {
