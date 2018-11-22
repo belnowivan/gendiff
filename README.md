@@ -12,6 +12,13 @@ this is cli tools
 [![asciicast](https://asciinema.org/a/An9SC0ymS2SZZ7ecfYQkCexOK.svg)](https://asciinema.org/a/An9SC0ymS2SZZ7ecfYQkCexOK)
 
 #### diff two files
+
 ``` gendiff <path-to-file> <path-to-file> ```
 
+##### json
+
 [![asciicast](https://asciinema.org/a/xnWgL1S7eA2vmFG3g1gjqK61l.svg)](https://asciinema.org/a/xnWgL1S7eA2vmFG3g1gjqK61l)
+
+##### yml
+
+[![asciicast](https://asciinema.org/a/neUZnaP5Su2ycUBmk6zAJxVPy.svg)](https://asciinema.org/a/neUZnaP5Su2ycUBmk6zAJxVPy)
