@@ -25,6 +25,8 @@ this is cli tools
 
 ##### ini
 
+[![asciicast](https://asciinema.org/a/3PwyMkX9b3Ti7QnWYk9ODsv0n.svg)](https://asciinema.org/a/3PwyMkX9b3Ti7QnWYk9ODsv0n)
+
 (new version)
 
 [![asciicast](https://asciinema.org/a/3NZ0W2v7vANIe1XqmzidcK9eK.svg)](https://asciinema.org/a/3NZ0W2v7vANIe1XqmzidcK9eK)
