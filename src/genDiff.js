@@ -3,7 +3,7 @@ import path from 'path';
 import fs from 'fs';
 import union from 'lodash/union';
 import has from 'lodash/has';
-import toJsFormat from './parse';
+import toJsFormat from './parsers';
 
 const diff = (dataOne, dataTwo) => {
   const arrKey = union(Object.keys(dataOne), Object.keys(dataTwo));
