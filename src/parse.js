@@ -1,5 +1,3 @@
-import path from 'path';
-import fs from 'fs';
 import yaml from 'js-yaml';
 
 const objFormatChoice = {
@@ -7,8 +5,7 @@ const objFormatChoice = {
   '.yml': yaml.safeLoad,
   '.ini': 'ago',
 };
-export default (filePath) => {
-  const contentFile = fs.readFileSync(filePath, 'utf8');
-  const funcFormat = objFormatChoice[path.extname(filePath)];
-  return funcFormat(contentFile);
+export default (dataFile, format) => {
+  const funcFormat = objFormatChoice[format];
+  return funcFormat(dataFile);
 };

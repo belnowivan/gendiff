@@ -1,4 +1,6 @@
 /* eslint-disable lodash/prefer-lodash-method */
+import path from 'path';
+import fs from 'fs';
 import union from 'lodash/union';
 import has from 'lodash/has';
 import toJsFormat from './parse';
@@ -16,8 +18,11 @@ const diff = (dataOne, dataTwo) => {
   return `{\n${diffArr.join('\n')}\n}`;
 };
 
+
 export default (firstPath, secondPath) => {
-  const dataFirstFile = toJsFormat(firstPath);
-  const dataSecondtFile = toJsFormat(secondPath);
+  const readFirstFile = fs.readFileSync(firstPath, 'utf8');
+  const readSecondFile = fs.readFileSync(secondPath, 'utf8');
+  const dataFirstFile = toJsFormat(readFirstFile, path.extname(firstPath));
+  const dataSecondtFile = toJsFormat(readSecondFile, path.extname(secondPath));
   return diff(dataFirstFile, dataSecondtFile);
 };
