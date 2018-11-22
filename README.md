@@ -22,3 +22,8 @@ this is cli tools
 ##### yml
 
 [![asciicast](https://asciinema.org/a/neUZnaP5Su2ycUBmk6zAJxVPy.svg)](https://asciinema.org/a/neUZnaP5Su2ycUBmk6zAJxVPy)
+
+
+(new version)
+
+[![asciicast](https://asciinema.org/a/3NZ0W2v7vANIe1XqmzidcK9eK.svg)](https://asciinema.org/a/3NZ0W2v7vANIe1XqmzidcK9eK)
