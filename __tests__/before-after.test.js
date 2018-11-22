@@ -17,3 +17,8 @@ test('test json format', () => {
   const resultDiffJson = functTesDifftManyFormat('.json');
   expect(resultDiffJson).toBe(expectedValue);
 });
+
+test('test ini format', () => {
+  const resultDiffJson = functTesDifftManyFormat('.ini');
+  expect(resultDiffJson).toBe(expectedValue);
+});
