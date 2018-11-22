@@ -6,15 +6,14 @@ const pathMinusFormatSecond = './__tests__/__fixtures__/after-file';
 const expectedFilePath = './__tests__/__fixtures__/expectedJSON.txt';
 
 const functTesDifftManyFormat = extName => genDiff(`${pathMinusFormatFirst}${extName}`, `${pathMinusFormatSecond}${extName}`);
+const expectedValue = fs.readFileSync(expectedFilePath, 'utf8');
 
 test('test yml format', () => {
   const resultDiffYml = functTesDifftManyFormat('.yml');
-  const expected = fs.readFileSync(expectedFilePath, 'utf8');
-  expect(resultDiffYml).toBe(expected);
+  expect(resultDiffYml).toBe(expectedValue);
 });
 
 test('test json format', () => {
   const resultDiffJson = functTesDifftManyFormat('.json');
-  const expected = fs.readFileSync(expectedFilePath, 'utf8');
-  expect(resultDiffJson).toBe(expected);
+  expect(resultDiffJson).toBe(expectedValue);
 });
