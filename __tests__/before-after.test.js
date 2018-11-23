@@ -29,9 +29,8 @@ describe('test many format', () => {
     const resultDiffJson = functTesDifftManyFormat('.tree.json');
     expect(resultDiffJson).toBe(expectedTreeValue);
   });
-/*
   test('test yml tree format', () => {
-    const resultDiffJson = functTesDifftManyFormat('.tree.ini');
+    const resultDiffJson = functTesDifftManyFormat('.tree.yml');
     expect(resultDiffJson).toBe(expectedTreeValue);
   });
 
@@ -39,5 +38,4 @@ describe('test many format', () => {
     const resultDiffJson = functTesDifftManyFormat('.tree.ini');
     expect(resultDiffJson).toBe(expectedTreeValue);
   });
-  */
 });
