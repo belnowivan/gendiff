@@ -12,14 +12,12 @@ const objmethod = {
 };
 
 const prettyDif = (arr, depth = 0) => {
-  const res = arr.map((obj) => {
-    if (obj.type === 'node') {
-      return `${' '.repeat(depth)}${objmethod[obj.action]} 
-        ${obj.name}: \n${flatten(prettyDif(obj.children, depth + 1))}`;
+  const res = arr.reduce((acc, obj) => {
+    if(obj.type === node) {
+      
     }
-    return `${' '.repeat(depth)}${objmethod[obj.action]} ${obj.name}: ${obj.value}`;
   });
-  return `{\n${res.join('\n')}\n}`;
+  return res;
 };
 
 export default (firstPath, secondPath) => {
