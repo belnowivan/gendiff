@@ -5,22 +5,22 @@ import flatten from 'lodash/flatten';
 import arrDiff from './ast';
 import toJsFormat from './parsers';
 
-const badgesDiff = {
-  dell: '-',
+const objmethod = {
   plus: '+',
+  dell: '-',
   notChanged: ' ',
 };
 
-const prettyDif = (arr) => {
-  const result = arr.reduce((acc, elem) => {
-    if (elem.type === 'node') {
-      return flatten([...acc, `  ${badgesDiff[elem.action]} ${elem.name}: ${prettyDif(elem.children)}`]);
+const prettyDif = (arr, depth = 0) => {
+  const res = arr.map((obj) => {
+    if (obj.type === 'node') {
+      return `${' '.repeat(depth)}${objmethod[obj.action]} 
+        ${obj.name}: \n${flatten(prettyDif(obj.children, depth + 1))}`;
     }
-    return flatten([...acc, `  ${badgesDiff[elem.action]} ${elem.name}: ${elem.value}`]);
-  }, []);
-  return `{\n${result.join('\n')}\n}`;
+    return `${' '.repeat(depth)}${objmethod[obj.action]} ${obj.name}: ${obj.value}`;
+  });
+  return `{\n${res.join('\n')}\n}`;
 };
-
 
 export default (firstPath, secondPath) => {
   const readFirstFile = fs.readFileSync(firstPath, 'utf8');
@@ -30,3 +30,54 @@ export default (firstPath, secondPath) => {
   const diff = arrDiff(dataFirstFile, dataSecondtFile);
   return prettyDif(diff);
 };
+
+const a = arrDiff({
+  "common": {
+    "setting1": "Value 1",
+    "setting2": "200",
+    "setting3": true,
+    "setting6": {
+      "key": "value"
+    }
+  },
+  "group1": {
+    "baz": "bas",
+    "foo": "bar",
+    "nest": {
+      "key": "value"
+    }
+  },
+  "group2": {
+    "abc": "12345"
+  }
+},{
+  "common": {
+    "follow": false,
+    "setting1": "Value 1",
+    "setting3": {
+      "key": "value"
+    },
+    "setting4": "blah blah",
+    "setting5": {
+      "key5": "value5"
+    },
+    "setting6": {
+      "key": "value",
+      "ops": "vops"
+    }
+  },
+
+  "group1": {
+    "foo": "bar",
+    "baz": "bars",
+    "nest": "str"
+  },
+
+  "group3": {
+    "fee": "100500"
+  }
+});
+
+console.log(a);
+
+console.log(prettyDif(a));
