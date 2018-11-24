@@ -1,21 +1,24 @@
 /* eslint-disable lodash/prefer-lodash-method */
 import path from 'path';
 import fs from 'fs';
-import union from 'lodash/union';
-import has from 'lodash/has';
+import flatten from 'lodash/flatten';
+import arrDiff from './ast';
 import toJsFormat from './parsers';
 
-const diff = (dataOne, dataTwo) => {
-  const arrKey = union(Object.keys(dataOne), Object.keys(dataTwo));
-  const diffArr = arrKey.reduce((acc, key) => {
-    if (has(dataOne, key) && !has(dataTwo, key)) { return [...acc, `  - ${key}: ${dataOne[key]}`]; }
-    if (!has(dataOne, key) && has(dataTwo, key)) { return [...acc, `  + ${key}: ${dataTwo[key]}`]; }
-    if (dataOne[key] !== dataTwo[key]) {
-      return [...acc, `  + ${key}: ${dataTwo[key]}`, `  - ${key}: ${dataOne[key]}`];
+const badgesDiff = {
+  dell: '-',
+  plus: '+',
+  notChanged: ' ',
+};
+
+const prettyDif = (arr) => {
+  const result = arr.reduce((acc, elem) => {
+    if (elem.type === 'node') {
+      return flatten([...acc, `  ${badgesDiff[elem.action]} ${elem.name}: ${prettyDif(elem.children)}`]);
     }
-    return [...acc, `    ${key}: ${dataTwo[key]}`];
+    return flatten([...acc, `  ${badgesDiff[elem.action]} ${elem.name}: ${elem.value}`]);
   }, []);
-  return `{\n${diffArr.join('\n')}\n}`;
+  return `{\n${result.join('\n')}\n}`;
 };
 
 
@@ -24,5 +27,6 @@ export default (firstPath, secondPath) => {
   const readSecondFile = fs.readFileSync(secondPath, 'utf8');
   const dataFirstFile = toJsFormat(readFirstFile, path.extname(firstPath));
   const dataSecondtFile = toJsFormat(readSecondFile, path.extname(secondPath));
-  return diff(dataFirstFile, dataSecondtFile);
+  const diff = arrDiff(dataFirstFile, dataSecondtFile);
+  return prettyDif(diff);
 };
