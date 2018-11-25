@@ -6,7 +6,7 @@ describe('test many format', () => {
   const pathMinusFormatSecond = './__tests__/__fixtures__/after-file';
   const expectedFlatFile = './__tests__/__fixtures__/expected';
 
-  const functTesDifftManyFormat = extName => genDiff(`${pathMinusFormatFirst}${extName}`, `${pathMinusFormatSecond}${extName}`);
+  const functTesDifftManyFormat = extName => genDiff(`${pathMinusFormatFirst}${extName}`, `${pathMinusFormatSecond}${extName}`, 'pretty');
   const expectedFlatValue = fs.readFileSync(`${expectedFlatFile}.flat.txt`, 'utf8');
   const expectedTreeValue = fs.readFileSync(`${expectedFlatFile}.tree.txt`, 'utf8');
 

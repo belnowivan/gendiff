@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import genDiff from '..';
+import formatDiff from '..';
 import programm from 'commander';
 
 programm
@@ -8,6 +8,9 @@ programm
   .description('Compares two configuration files and shows a difference.')
   .arguments('<firstConfig> <secondConfig>')
   .parse(process.argv)
-  .action((firstPath, secondPath) => console.log(genDiff(firstPath, secondPath)));
+  .action((firstPath, secondPath, format) => {
+    const getFormat = formatDiff(format);
+    return console.log(getFormat(firstPath, secondPath));
+  });
 
 programm.parse(process.argv);
