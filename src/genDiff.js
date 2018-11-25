@@ -2,14 +2,14 @@
 import path from 'path';
 import fs from 'fs';
 import arrDiff from './ast';
-import toJsFormat from './parsers';
-import formatDif from './render';
+import pars from './parsers';
+import getFormat from './renders';
 
 export default (firstPath, secondPath, format) => {
   const readFirstFile = fs.readFileSync(firstPath, 'utf8');
   const readSecondFile = fs.readFileSync(secondPath, 'utf8');
-  const dataFirstFile = toJsFormat(readFirstFile, path.extname(firstPath));
-  const dataSecondtFile = toJsFormat(readSecondFile, path.extname(secondPath));
+  const dataFirstFile = pars(readFirstFile, path.extname(firstPath));
+  const dataSecondtFile = pars(readSecondFile, path.extname(secondPath));
   const diff = arrDiff(dataFirstFile, dataSecondtFile);
-  return formatDif(format)(diff);
+  return getFormat(format)(diff);
 };

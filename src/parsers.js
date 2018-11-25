@@ -6,7 +6,7 @@ const objFormatChoice = {
   '.yml': yaml.safeLoad,
   '.ini': ini.parse,
 };
-export default (dataFile, format) => {
+export default (data, format) => {
   const funcFormat = objFormatChoice[format];
-  return funcFormat(dataFile);
+  return funcFormat(data);
 };
