@@ -11,5 +11,6 @@ export default (firstPath, secondPath, format) => {
   const dataFirstFile = pars(readFirstFile, path.extname(firstPath));
   const dataSecondtFile = pars(readSecondFile, path.extname(secondPath));
   const diff = arrDiff(dataFirstFile, dataSecondtFile);
-  return getFormat(format)(diff);
+  const formatOutput = getFormat(format);
+  return formatOutput(diff);
 };
