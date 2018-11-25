@@ -21,7 +21,7 @@ const arrPrettyDiff = (arr, depth = 4) => {
     if (obj.type === 'modifed') {
       const oldVal = { [obj.key]: obj.oldValue };
       const newVal = { [obj.key]: obj.newValue };
-      return [...acc, strifyObj(oldVal, depth, type.deleted), strifyObj(newVal, depth, type.added)];
+      return [...acc, strifyObj(newVal, depth, type.added), strifyObj(oldVal, depth, type.deleted)];
     }
     const prefix = type[obj.type];
     const objContent = { [obj.key]: obj.value };
