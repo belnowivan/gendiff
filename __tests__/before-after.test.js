@@ -9,33 +9,38 @@ describe('test many format', () => {
   const functTesDifftManyFormat = (extName, format) => genDiff(`${pathMinusFormatFirst}${extName}`, `${pathMinusFormatSecond}${extName}`, format);
   const expectedFlatValue = fs.readFileSync(`${expectedFlatFile}.flat.txt`, 'utf8');
   const expectedTreeValue = fs.readFileSync(`${expectedFlatFile}.tree.txt`, 'utf8');
+  const expectedPlainValue = fs.readFileSync(`${expectedFlatFile}.plain.txt`, 'utf8');
 
   test('test yml falat format', () => {
-    const resultDiffYml = functTesDifftManyFormat('.yml', 'pretty');
-    expect(resultDiffYml).toBe(expectedFlatValue);
+    const resultDiff = functTesDifftManyFormat('.yml', 'pretty');
+    expect(resultDiff).toBe(expectedFlatValue);
   });
 
   test('test json flat format', () => {
-    const resultDiffJson = functTesDifftManyFormat('.json', 'pretty');
-    expect(resultDiffJson).toBe(expectedFlatValue);
+    const resultDiff = functTesDifftManyFormat('.json', 'pretty');
+    expect(resultDiff).toBe(expectedFlatValue);
   });
 
   test('test ini flat format', () => {
-    const resultDiffJson = functTesDifftManyFormat('.ini', 'pretty');
-    expect(resultDiffJson).toBe(expectedFlatValue);
+    const resultDiff = functTesDifftManyFormat('.ini', 'pretty');
+    expect(resultDiff).toBe(expectedFlatValue);
   });
 
   test('test json tree format', () => {
-    const resultDiffJson = functTesDifftManyFormat('.tree.json', 'pretty');
-    expect(resultDiffJson).toBe(expectedTreeValue);
+    const resultDiff = functTesDifftManyFormat('.tree.json', 'pretty');
+    expect(resultDiff).toBe(expectedTreeValue);
   });
   test('test yml tree format', () => {
-    const resultDiffJson = functTesDifftManyFormat('.tree.yml', 'pretty');
-    expect(resultDiffJson).toBe(expectedTreeValue);
+    const resultDiff = functTesDifftManyFormat('.tree.yml', 'pretty');
+    expect(resultDiff).toBe(expectedTreeValue);
   });
 
   test('test ini tree format', () => {
-    const resultDiffJson = functTesDifftManyFormat('.tree.ini', 'pretty');
-    expect(resultDiffJson).toBe(expectedTreeValue);
+    const resultDiff = functTesDifftManyFormat('.tree.ini', 'pretty');
+    expect(resultDiff).toBe(expectedTreeValue);
+  });
+  test('test ini tree format diff plain', () => {
+    const resultDiff = functTesDifftManyFormat('.tree.ini', 'plain');
+    expect(resultDiff).toBe(expectedPlainValue);
   });
 });
