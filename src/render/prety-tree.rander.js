@@ -28,5 +28,6 @@ const prettyDif = (arr, depth = 4) => {
   }, []);
   return res;
 };
+const getPretty = (arr, depth) => `{\n${prettyDif(arr, depth).join('\n')}\n}`;
 
-export default prettyDif;
+export default getPretty;
