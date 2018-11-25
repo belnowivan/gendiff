@@ -11,26 +11,17 @@ const getArrDiff = (obj1, obj2) => {
       }];
     }
     if (has(obj1, key) && !has(obj2, key)) {
-      return [...acc, {
-        value: obj1[key], action: 'dell', name: key,
-      }];
+      return [...acc, { value: obj1[key], action: 'dell', name: key }];
     }
     if (!has(obj1, key) && has(obj2, key)) {
-      return [...acc, {
-        value: obj2[key], action: 'plus', name: key,
-      }];
+      return [...acc, { value: obj2[key], action: 'plus', name: key }];
     }
     if (obj1[key] !== obj2[key]) {
       return [...acc,
-        {
-          value: obj2[key], action: 'plus', name: key,
-        }, {
-          value: obj1[key], action: 'dell', name: key,
-        }];
+        { value: obj2[key], action: 'plus', name: key },
+        { value: obj1[key], action: 'dell', name: key }];
     }
-    return [...acc, {
-      value: obj1[key], action: 'notChanged', name: key,
-    }];
+    return [...acc, { value: obj1[key], action: 'notChanged', name: key }];
   }, []);
   return arrDiff;
 };
