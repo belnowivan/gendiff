@@ -23,9 +23,9 @@ const getArrDiff = (obj1, obj2) => {
     if (obj1[key] !== obj2[key]) {
       return [...acc,
         {
-          value: obj1[key], action: 'dell', name: key,
-        }, {
           value: obj2[key], action: 'plus', name: key,
+        }, {
+          value: obj1[key], action: 'dell', name: key,
         }];
     }
     return [...acc, {

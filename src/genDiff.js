@@ -5,7 +5,7 @@ import arrDiff from './ast';
 import toJsFormat from './parsers';
 import prettyDif from './render/prety-tree.rander';
 
-const a = (firstPath, secondPath) => {
+export default (firstPath, secondPath) => {
   const readFirstFile = fs.readFileSync(firstPath, 'utf8');
   const readSecondFile = fs.readFileSync(secondPath, 'utf8');
   const dataFirstFile = toJsFormat(readFirstFile, path.extname(firstPath));
@@ -13,7 +13,3 @@ const a = (firstPath, secondPath) => {
   const diff = arrDiff(dataFirstFile, dataSecondtFile);
   return prettyDif(diff);
 };
-
-export default a;
-
-console.log(a('./__tests__/__fixtures__/before-file.tree.json', './__tests__/__fixtures__/after-file.tree.json'));
