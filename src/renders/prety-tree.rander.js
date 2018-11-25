@@ -1,9 +1,5 @@
 /* eslint-disable lodash/prefer-lodash-method */
-const type = {
-  deleted: '- ',
-  added: '+ ',
-  notChanged: '  ',
-};
+const type = { deleted: '- ', added: '+ ', notChanged: '  ' };
 
 const strifyObj = (obj, depth, prefix = '') => {
   const arrStr = Object.keys(obj).reduce((acc, key) => {
@@ -16,7 +12,7 @@ const strifyObj = (obj, depth, prefix = '') => {
   return arrStr.join('\n');
 };
 
-export const arrPrettyDiff = (arr, depth = 4) => {
+const arrPrettyDiff = (arr, depth = 4) => {
   const resultArr = arr.reduce((acc, obj) => {
     if (obj.type === 'node') {
       return [...acc, `${' '.repeat(depth)}${obj.key}: {`, ...arrPrettyDiff(obj.children, depth + 4),
@@ -25,8 +21,7 @@ export const arrPrettyDiff = (arr, depth = 4) => {
     if (obj.type === 'modifed') {
       const oldVal = { [obj.key]: obj.oldValue };
       const newVal = { [obj.key]: obj.newValue };
-      return [...acc, strifyObj(oldVal, depth, type.deleted),
-        strifyObj(newVal, depth, type.added)];
+      return [...acc, strifyObj(oldVal, depth, type.deleted), strifyObj(newVal, depth, type.added)];
     }
     const prefix = type[obj.type];
     const objContent = { [obj.key]: obj.value };
@@ -34,6 +29,5 @@ export const arrPrettyDiff = (arr, depth = 4) => {
   }, []);
   return resultArr;
 };
-const getPretty = (arr, depth) => `{\n${arrPrettyDiff(arr, depth).join('\n')}\n}`;
 
-export default getPretty;
+export default (arr, depth) => `{\n${arrPrettyDiff(arr, depth).join('\n')}\n}`;
