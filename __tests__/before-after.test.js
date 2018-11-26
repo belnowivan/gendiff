@@ -43,4 +43,12 @@ describe('test many format', () => {
     const resultDiff = functTesDifftManyFormat('.tree.ini', 'plain');
     expect(resultDiff).toBe(expectedPlainValue);
   });
+  test('test json tree format diff plain', () => {
+    const resultDiff = functTesDifftManyFormat('.tree.json', 'plain');
+    expect(resultDiff).toBe(expectedPlainValue);
+  });
+  test('test yml tree format diff plain', () => {
+    const resultDiff = functTesDifftManyFormat('.tree.yml', 'plain');
+    expect(resultDiff).toBe(expectedPlainValue);
+  });
 });

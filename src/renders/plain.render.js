@@ -1,27 +1,31 @@
+/* eslint-disable lodash/prefer-lodash-typecheck */
 /* eslint-disable lodash/prefer-lodash-method */
 const strByType = {
-  delete: ' was removed',
-  added: ' was added with value ',
-  modifed: ' was updated. From ',
+  deleted: '\' was removed',
+  added: '\' was added with value: ',
+  modifed: '\' was updated. From ',
 };
 
-const render = (arr) => {
+const choiceValue = (value) => {
+  const purport = typeof value === 'string' ? `'${value}'` : value;
+  return purport instanceof Object ? '[complex value]' : purport;
+};
+
+const typeRenderOptions = {
+  node: (obj, parentName, funct) => funct(obj.children, `${parentName}${obj.key}.`),
+  added: (obj, parentName) => `Property '${parentName}${obj.key}${strByType[obj.type]}${choiceValue(obj.value)}`,
+  modifed: (obj, parentName) => `Property '${parentName}${obj.key}${strByType[obj.type]}${choiceValue(obj.oldValue)} to ${choiceValue(obj.newValue)}`,
+  deleted: (obj, parentName) => `Property '${parentName}${obj.key}${strByType[obj.type]}`,
+};
+
+const render = (arr, parentName = '') => {
   const arrResult = arr.reduce((acc, obj) => {
-    if (obj.type === 'node') {
-      return [...acc, `Property ${obj.key}.${render(obj.children)}`];
+    if (!(typeRenderOptions[obj.type])) {
+      return acc;
     }
-    if (obj.type === 'modifed') {
-      const oldVal = obj.oldValue instanceof Object ? '[complex value]' : obj.oldValue;
-      const newVal = obj.newValue instanceof Object ? '[complex value]' : obj.newValue;
-      return [...acc, `Property ${obj.key} ${strByType[obj.type]}${oldVal} to ${newVal}`];
-    }
-    if (obj.type === 'added') {
-      const newVal = obj.value instanceof Object ? '[complex value]' : obj.value;
-      return [...acc, `Property ${obj.key}${strByType[obj.type]}${newVal}`];
-    }
-    return [...acc, `Property ${obj.key}${strByType[obj.type]}`];
-  });
-  return arrResult.join('');
+    return [...acc, typeRenderOptions[obj.type](obj, parentName, render)];
+  }, []);
+  return arrResult.join('\n');
 };
 
-export default arr => render(arr).join('\n');
+export default render;
