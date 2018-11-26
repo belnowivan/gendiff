@@ -1,4 +1,4 @@
-import getPretty from './prety.rander';
+import getPretty from './pretty.rander';
 import getPlain from './plain.render';
 import getJson from './json.render';
 
