@@ -3,7 +3,7 @@ import path from 'path';
 import fs from 'fs';
 import arrDiff from './ast';
 import pars from './parsers';
-import getFormat from './renders';
+import getFormat from './formatters';
 
 export default (firstPath, secondPath, format) => {
   const readFirstFile = fs.readFileSync(firstPath, 'utf8');
