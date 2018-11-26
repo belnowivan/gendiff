@@ -1,6 +1,6 @@
-import getPretty from './pretty.rander';
-import getPlain from './plain.render';
-import getJson from './json.render';
+import getPretty from './pretty.renderer';
+import getPlain from './plain.renderer';
+import getJson from './json.renderer';
 
 const formats = {
   pretty: getPretty,
