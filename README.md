@@ -32,3 +32,5 @@ this is cli tools
 [![asciicast](https://asciinema.org/a/TrJYoJtrP8EhBCciwtoWYEF2R.svg)](https://asciinema.org/a/TrJYoJtrP8EhBCciwtoWYEF2R)
 
 ##### format 'plain'
+
+[![asciicast](https://asciinema.org/a/zELsA2aaDbrSqOC4Qb02Ymioe.svg)](https://asciinema.org/a/zELsA2aaDbrSqOC4Qb02Ymioe)
