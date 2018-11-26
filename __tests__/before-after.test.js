@@ -10,6 +10,7 @@ describe('test many format', () => {
   const expectedFlatValue = fs.readFileSync(`${expectedFlatFile}.flat.txt`, 'utf8');
   const expectedTreeValue = fs.readFileSync(`${expectedFlatFile}.tree.txt`, 'utf8');
   const expectedPlainValue = fs.readFileSync(`${expectedFlatFile}.plain.txt`, 'utf8');
+  const expectedJsonValue = fs.readFileSync(`${expectedFlatFile}.json.txt`, 'utf8');
 
   test('test yml falat format', () => {
     const resultDiff = functTesDifftManyFormat('.yml', 'pretty');
@@ -50,5 +51,9 @@ describe('test many format', () => {
   test('test yml tree format diff plain', () => {
     const resultDiff = functTesDifftManyFormat('.tree.yml', 'plain');
     expect(resultDiff).toBe(expectedPlainValue);
+  });
+  test('test yml tree format diff json', () => {
+    const resultDiff = functTesDifftManyFormat('.json.yml', 'json');
+    expect(resultDiff).toBe(expectedJsonValue);
   });
 });
