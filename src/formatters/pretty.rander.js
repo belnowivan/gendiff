@@ -1,5 +1,4 @@
 /* eslint-disable lodash/prefer-lodash-method */
-const type = { deleted: '- ', added: '+ ', notChanged: '  ' };
 
 const strifyObj = (obj, depth, prefix = '') => {
   const arrStr = Object.keys(obj).reduce((acc, key) => {
@@ -14,18 +13,20 @@ const strifyObj = (obj, depth, prefix = '') => {
 
 const arrPrettyDiff = (arr, depth = 4) => {
   const resultArr = arr.reduce((acc, obj) => {
-    if (obj.type === 'node') {
-      return [...acc, `${' '.repeat(depth)}${obj.key}: {`, ...arrPrettyDiff(obj.children, depth + 4),
-        `${' '.repeat(depth)}}`];
+    switch (obj.type) {
+      case 'node':
+        return [...acc, `${' '.repeat(depth)}${obj.key}: {`, ...arrPrettyDiff(obj.children, depth + 4),
+          `${' '.repeat(depth)}}`];
+      case 'modifed':
+        return [...acc, strifyObj({ [obj.key]: obj.newValue }, depth, '+ '),
+          strifyObj({ [obj.key]: obj.oldValue }, depth, '- ')];
+      case 'added':
+        return [...acc, strifyObj({ [obj.key]: obj.value }, depth, '+ ')];
+      case 'deleted':
+        return [...acc, strifyObj({ [obj.key]: obj.value }, depth, '- ')];
+      default:
+        return [...acc, strifyObj({ [obj.key]: obj.value }, depth, '  ')];
     }
-    if (obj.type === 'modifed') {
-      const oldVal = { [obj.key]: obj.oldValue };
-      const newVal = { [obj.key]: obj.newValue };
-      return [...acc, strifyObj(newVal, depth, type.added), strifyObj(oldVal, depth, type.deleted)];
-    }
-    const prefix = type[obj.type];
-    const objContent = { [obj.key]: obj.value };
-    return [...acc, strifyObj(objContent, depth, prefix)];
   }, []);
   return resultArr;
 };

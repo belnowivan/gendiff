@@ -7,6 +7,6 @@ const objFormatChoice = {
   '.ini': ini.parse,
 };
 export default (data, format) => {
-  const funcFormat = objFormatChoice[format];
-  return funcFormat(data);
+  const parse = objFormatChoice[format];
+  return parse(data);
 };
