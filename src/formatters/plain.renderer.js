@@ -8,16 +8,16 @@ const choiceValue = (value) => {
 
 const typeRenderOptions = {
   node: (obj, parentName, funct) => funct(obj.children, `${parentName}${obj.key}.`),
-  added: (obj, parentName) => `Property '${parentName}${obj.key}' was added with value: ${choiceValue(obj.value)}\n`,
-  modifed: (obj, parentName) => `Property '${parentName}${obj.key}' was updated. From ${choiceValue(obj.oldValue)} to ${choiceValue(obj.newValue)}\n`,
-  deleted: (obj, parentName) => `Property '${parentName}${obj.key}' was removed\n`,
+  added: (obj, parentName) => `Property '${parentName}${obj.key}' was added with value: ${choiceValue(obj.value)}`,
+  modifed: (obj, parentName) => `Property '${parentName}${obj.key}' was updated. From ${choiceValue(obj.oldValue)} to ${choiceValue(obj.newValue)}`,
+  deleted: (obj, parentName) => `Property '${parentName}${obj.key}' was removed`,
   notChanged: () => '',
 };
 
 const render = (arr, parentName = '') => {
   const arrResult = arr.reduce((acc, obj) => [...acc,
     typeRenderOptions[obj.type](obj, parentName, render)], []);
-  return arrResult.join('');
+  return arrResult.felter(elem => elem !== '').join('\n');
 };
 
 export default render;
