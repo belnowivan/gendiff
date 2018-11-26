@@ -17,7 +17,7 @@ const typeRenderOptions = {
 const render = (arr, parentName = '') => {
   const arrResult = arr.reduce((acc, obj) => [...acc,
     typeRenderOptions[obj.type](obj, parentName, render)], []);
-  return arrResult.felter(elem => elem !== '').join('\n');
+  return arrResult.filter(elem => elem !== '').join('\n');
 };
 
 export default render;
