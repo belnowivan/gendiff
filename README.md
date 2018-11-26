@@ -30,3 +30,5 @@ this is cli tools
 ##### all structures of file
 
 [![asciicast](https://asciinema.org/a/TrJYoJtrP8EhBCciwtoWYEF2R.svg)](https://asciinema.org/a/TrJYoJtrP8EhBCciwtoWYEF2R)
+
+##### format 'plain'

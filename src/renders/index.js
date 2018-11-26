@@ -1,4 +1,4 @@
-import getPretty from './prety-tree.rander';
+import getPretty from './prety.rander';
 import getPlain from './plain.render';
 
 const formats = {
