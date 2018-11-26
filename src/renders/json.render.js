@@ -1,1 +1,1 @@
-export default arrDif => JSON.stringify(arrDif);
+export default arrDif => JSON.stringify(arrDif, null, '  ');

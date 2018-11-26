@@ -1,1 +1,98 @@
-s
+"[
+      {
+        "children": [
+          {
+            "value": "Value 1",
+            "type": "notChanged",
+            "key": "setting1"
+          },
+          {
+            "value": "200",
+            "type": "deleted",
+            "key": "setting2"
+          },
+          {
+            "type": "modifed",
+            "key": "setting3",
+            "newValue": {
+              "key": "value"
+            },
+            "oldValue": true
+          },
+          {
+            "children": [
+              {
+                "value": "value",
+                "type": "notChanged",
+                "key": "key"
+              },
+              {
+                "value": "vops",
+                "type": "added",
+                "key": "ops"
+              }
+            ],
+            "type": "node",
+            "key": "setting6"
+          },
+          {
+            "value": false,
+            "type": "added",
+            "key": "follow"
+          },
+          {
+            "value": "blah blah",
+            "type": "added",
+            "key": "setting4"
+          },
+          {
+            "value": {
+              "key5": "value5"
+            },
+            "type": "added",
+            "key": "setting5"
+          }
+        ],
+        "type": "node",
+        "key": "common"
+      },
+      {
+        "children": [
+          {
+            "type": "modifed",
+            "key": "baz",
+            "newValue": "bars",
+            "oldValue": "bas"
+          },
+          {
+            "value": "bar",
+            "type": "notChanged",
+            "key": "foo"
+          },
+          {
+            "type": "modifed",
+            "key": "nest",
+            "newValue": "str",
+            "oldValue": {
+              "key": "value"
+            }
+          }
+        ],
+        "type": "node",
+        "key": "group1"
+      },
+      {
+        "value": {
+          "abc": "12345"
+        },
+        "type": "deleted",
+        "key": "group2"
+      },
+      {
+        "value": {
+          "fee": "100500"
+        },
+        "type": "added",
+        "key": "group3"
+      }
+    ]"
