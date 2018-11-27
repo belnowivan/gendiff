@@ -1,34 +1,34 @@
 /* eslint-disable lodash/prefer-lodash-method */
+import flatten from 'lodash/flatten';
 
-const strifyObj = (obj, depth, prefix = '') => {
-  const arrStr = Object.keys(obj).reduce((acc, key) => {
-    if (obj[key] instanceof Object) {
-      return [...acc, `${' '.repeat(depth - 2)}${prefix}${key}: {`,
-        `${strifyObj(obj[key], depth + 4, '  ')}\n${' '.repeat(depth)}}`];
-    }
-    return [...acc, `${' '.repeat(depth - 2)}${prefix}${key}: ${obj[key]}`];
-  }, []);
-  return arrStr.join('\n');
+const toStr = (val, depth) => {
+  if (!(val instanceof Object)) { return val; }
+  const arrStr = Object.keys(val)
+    .map(key => (val[key] instanceof Object ? `${'    '.repeat(depth)}${key}: ${toStr(val[key], depth + 1)}`
+      : `${'    '.repeat(depth)}${key}: ${val[key]}`));
+  return `{\n${arrStr.join('\n')}\n${'    '.repeat(depth - 1)}}`;
 };
 
-const arrPrettyDiff = (arr, depth = 4) => {
-  const resultArr = arr.reduce((acc, obj) => {
+const strifyObj = (objKey, objVal, depth, prefix = '  ') => `${'    '.repeat(depth).slice(2)}${prefix}${objKey}: ${toStr(objVal, depth + 1)}`;
+
+const arrPrettyDiff = (arr, depth = 1) => {
+  const resultArr = arr.map((obj) => {
     switch (obj.type) {
       case 'node':
-        return [...acc, `${' '.repeat(depth)}${obj.key}: {`, ...arrPrettyDiff(obj.children, depth + 4),
-          `${' '.repeat(depth)}}`];
+        return [`${'    '.repeat(depth)}${obj.key}: {`, ...arrPrettyDiff(obj.children, depth + 1),
+          `${'    '.repeat(depth)}}`];
       case 'modifed':
-        return [...acc, strifyObj({ [obj.key]: obj.newValue }, depth, '+ '),
-          strifyObj({ [obj.key]: obj.oldValue }, depth, '- ')];
+        return [strifyObj(obj.key, obj.newValue, depth, '+ '),
+          strifyObj(obj.key, obj.oldValue, depth, '- ')];
       case 'added':
-        return [...acc, strifyObj({ [obj.key]: obj.value }, depth, '+ ')];
+        return [strifyObj(obj.key, obj.value, depth, '+ ')];
       case 'deleted':
-        return [...acc, strifyObj({ [obj.key]: obj.value }, depth, '- ')];
+        return [strifyObj(obj.key, obj.value, depth, '- ')];
       default:
-        return [...acc, strifyObj({ [obj.key]: obj.value }, depth, '  ')];
+        return [strifyObj(obj.key, obj.value, depth, '  ')];
     }
-  }, []);
-  return resultArr;
+  });
+  return flatten(resultArr);
 };
 
 export default (arr, depth) => `{\n${arrPrettyDiff(arr, depth).join('\n')}\n}`;
