@@ -21,11 +21,11 @@ const arrPrettyDiff = (arr, depth = 1) => {
         return [strifyObj(obj.key, obj.newValue, depth, '+ '),
           strifyObj(obj.key, obj.oldValue, depth, '- ')];
       case 'added':
-        return [strifyObj(obj.key, obj.value, depth, '+ ')];
+        return strifyObj(obj.key, obj.value, depth, '+ ');
       case 'deleted':
-        return [strifyObj(obj.key, obj.value, depth, '- ')];
+        return strifyObj(obj.key, obj.value, depth, '- ');
       default:
-        return [strifyObj(obj.key, obj.value, depth, '  ')];
+        return strifyObj(obj.key, obj.value, depth, '  ');
     }
   });
   return flatten(resultArr);

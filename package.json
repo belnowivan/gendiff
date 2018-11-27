@@ -1,6 +1,6 @@
 {
   "name": "project-lvl2-belnow",
-  "version": "1.6.11",
+  "version": "1.6.12",
   "description": "this application is searching difference of configuration files",
   "main": "index.js",
   "bin": {
