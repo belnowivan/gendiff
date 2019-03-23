@@ -21,7 +21,7 @@
 
 #### format '[plain](https://asciinema.org/a/zELsA2aaDbrSqOC4Qb02Ymioe)'
 
-#### fromat '[json](https://asciinema.org/a/GvyLYUEOg3GU7abQmV3BN27mT)'
+#### format '[json](https://asciinema.org/a/GvyLYUEOg3GU7abQmV3BN27mT)'
 
 
 
