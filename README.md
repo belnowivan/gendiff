@@ -6,7 +6,7 @@
 
 ### this is cli tools 
 
-### Compares two configuration of files and shows a difference.
+### Compares two configurations of files and shows a difference.
 
 [help](https://asciinema.org/a/An9SC0ymS2SZZ7ecfYQkCexOK):   ``` gendiff -h ```
  
